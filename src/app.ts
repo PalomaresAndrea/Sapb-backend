@@ -2,14 +2,12 @@ import express, { Application } from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
-
+import dotenv from 'dotenv';
+dotenv.config();
 
 import authRoutes from './routes/authRoutes';
-/*
-* Clase de inicio de nuestra aplicación NodeJsExpress
-* Autor: Schoenstantt Andrea Palomares Barrientos
-* Fecha: 26/02/24
-*/
+import usuarioRoutes from './routes/usuarioRoutes';
+
 class Server {
     private app: Application;
 
@@ -38,6 +36,9 @@ class Server {
         // puertos de conexión de la API
         this.app.use(cors());
 
+dotenv.config();
+
+        
 
         // solo se permiten peticiones en formato JSON
         this.app.use(bodyParser.json());
@@ -49,9 +50,9 @@ class Server {
     //Configura las rutas
     routes() {
         this.app.use("/", authRoutes);
+        this.app.use('/usuario',usuarioRoutes)
     }
 }
 
 
 const server = new Server();
-

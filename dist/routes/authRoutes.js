@@ -1,16 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
+const authController_1 = require("../controllers/authController");
 class AuthRoutes {
-    //Inicializa 
     constructor() {
         this.router = (0, express_1.Router)();
         this.config();
     }
     config() {
-        this.router.get('/', (req, res) => {
-            res.send('Invocando Autenticación');
-        });
+        this.router.post('/', authController_1.authController.iniciarSesion);
     }
 }
 const authRoutes = new AuthRoutes();
